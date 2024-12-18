@@ -248,7 +248,7 @@ export default function BugReport() {
               style={{ backgroundColor: "#239144", color: "white" }}
               onClick={() => {
                 window.open(
-                  "https://github.com/drawdb-io/drawdb/issues",
+                  "https://github.com/StarForAll/drawdb/issues",
                   "_self",
                 );
               }}

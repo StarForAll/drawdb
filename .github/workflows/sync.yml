@@ -1,0 +1,58 @@
+name: Sync Branches from Upstream
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch: [ main ]  # 同步多个分支
+      fail-fast: false  # 可以同步多个分支，即使有失败也继续执行下一分支同步操作
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true  # 取消正在进行的相同工作流
+    steps:
+      - name: Checkout fork repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整的提交历史
+
+      - name: Sync  branch
+        id: sync_branch
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
+        with:
+          upstream_sync_repo: drawdb-io/drawdb
+          upstream_sync_branch: ${{ matrix.branch }}  # 上游分支
+          target_sync_branch: ${{ matrix.branch }}  # 目标分支
+          upstream_repo_access_token: ${{ secrets.UPSTREAM_REPO_SECRET }}
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log sync status
+        run:
+          echo "Sync status for ${{ matrix.branch }}: ${{ steps.sync_branch.outcome }}"
+
+      - name: Send email notification on sync failure
+        if: (failure() || steps.sync_branch.outcome != 'success' )
+        uses: dawidd6/action-send-mail@v4
+        with:
+          server_address: smtp.qiye.aliyun.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          from: "GitHub qwerty-learner sync"
+          subject: "GitHub Actions: Branch Sync Failed"
+          body: |
+            The following branches failed to sync:
+            - ${{ matrix.branch }}: ${{ steps.sync_branch.outcome }}
+            Error details:
+            ```
+            ${{ steps.sync_branch.outputs.error }}
+            ```
+          to: ${{ secrets.TO_EMAIL_USERNAME }}
+
+
+

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import Editor from "./pages/Editor";
-import Survey from "./pages/Survey";
-import BugReport from "./pages/BugReport";
+// import Survey from "./pages/Survey";
+// import BugReport from "./pages/BugReport";
 import Shortcuts from "./pages/Shortcuts";
 import Templates from "./pages/Templates";
 import LandingPage from "./pages/LandingPage";
@@ -25,14 +25,14 @@ export default function App() {
               </ThemedPage>
             }
           />
-          <Route
-            path="/survey"
-            element={
-              <ThemedPage>
-                <Survey />
-              </ThemedPage>
-            }
-          />
+{/*           <Route */}
+{/*             path="/survey" */}
+{/*             element={ */}
+{/*               <ThemedPage> */}
+{/*                 <Survey /> */}
+{/*               </ThemedPage> */}
+{/*             } */}
+{/*           /> */}
           <Route
             path="/shortcuts"
             element={
@@ -41,14 +41,14 @@ export default function App() {
               </ThemedPage>
             }
           />
-          <Route
-            path="/bug-report"
-            element={
-              <ThemedPage>
-                <BugReport />
-              </ThemedPage>
-            }
-          />
+{/*           <Route */}
+{/*             path="/bug-report" */}
+{/*             element={ */}
+{/*               <ThemedPage> */}
+{/*                 <BugReport /> */}
+{/*               </ThemedPage> */}
+{/*             } */}
+{/*           /> */}
           <Route path="/templates" element={<Templates />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

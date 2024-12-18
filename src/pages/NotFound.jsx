@@ -4,18 +4,18 @@ export default function NotFound() {
       <p>hey there!</p>
 
       <p>looking for something you couldn&apos;t find?</p>
-      <p>
-        <a className="text-blue-600" href="mailto:drawdb@outlook.com">
-          shoot us an email
-        </a>{" "}
-        or{" "}
-        <a
-          className="text-blue-600"
-          href="https://discord.gg/BrjZgNrmR6"
-        >
-          a message on discord
-        </a>
-      </p>
+{/*       <p> */}
+{/*         <a className="text-blue-600" href="mailto:drawdb@outlook.com"> */}
+{/*           shoot us an email */}
+{/*         </a>{" "} */}
+{/*         or{" "} */}
+{/*         <a */}
+{/*           className="text-blue-600" */}
+{/*           href="https://discord.gg/BrjZgNrmR6" */}
+{/*         > */}
+{/*           a message on discord */}
+{/*         </a> */}
+{/*       </p> */}
       <br />
       <p className="opacity-70">
         * to create a relationship hold the blue dot of a field and drag it

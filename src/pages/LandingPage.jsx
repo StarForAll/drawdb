@@ -29,17 +29,17 @@ export default function LandingPage() {
 //   const [stats, setStats] = useState({ stars: 18000, forks: 1200 });
 
   useEffect(() => {
-    const fetchStats = async () => {
-      await axios
-        .get("https://api.github-star-counter.workers.dev/user/StarForAll")
-        .then((res) => setStats(res.data));
-    };
+    // const fetchStats = async () => {
+    //   await axios
+    //     .get("https://api.github-star-counter.workers.dev/user/StarForAll")
+    //     .then((res) => setStats(res.data));
+    // };
 
     document.body.setAttribute("theme-mode", "light");
     document.title =
       "drawDB | Online database diagram editor and SQL generator";
 
-    fetchStats();
+    // fetchStats();
   }, []);
 
   return (

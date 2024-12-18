@@ -9,24 +9,24 @@ import postgres_icon from "../assets/postgres.png";
 import sqlite_icon from "../assets/sqlite.png";
 import mariadb_icon from "../assets/mariadb.png";
 import sql_server_icon from "../assets/sql-server.png";
-import discord from "../assets/discord.png";
-import github from "../assets/github.png";
+// import discord from "../assets/discord.png";
+// import github from "../assets/github.png";
 import screenshot from "../assets/screenshot.png";
 import FadeIn from "../animations/FadeIn";
 import axios from "axios";
-import { languages } from "../i18n/i18n";
-import { Tweet } from "react-tweet";
+// import { languages } from "../i18n/i18n";
+// import { Tweet } from "react-tweet";
 
-function shortenNumber(number) {
-  if (number < 1000) return number;
-
-  if (number >= 1000 && number < 1_000_000)
-    return `${(number / 1000).toFixed(1)}k`;
-}
+// function shortenNumber(number) {
+//   if (number < 1000) return number;
+//
+//   if (number >= 1000 && number < 1_000_000)
+//     return `${(number / 1000).toFixed(1)}k`;
+// }
 
 export default function LandingPage() {
   const [showSurvey, setShowSurvey] = useState(false);
-  const [stats, setStats] = useState({ stars: 18000, forks: 1200 });
+//   const [stats, setStats] = useState({ stars: 18000, forks: 1200 });
 
   useEffect(() => {
     const fetchStats = async () => {

@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0  # 获取完整的提交历史
 
-      - name: Sync  branch
+      - name: Sync branch
         id: sync_branch
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
         with:
@@ -32,11 +32,11 @@ jobs:
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log sync status
-        run:
+        run: |
           echo "Sync status for ${{ matrix.branch }}: ${{ steps.sync_branch.outcome }}"
 
       - name: Send email notification on sync failure
-        if: (failure() || steps.sync_branch.outcome != 'success' )
+        if: failure() || steps.sync_branch.result != 'success'
         uses: dawidd6/action-send-mail@v4
         with:
           server_address: smtp.qiye.aliyun.com
@@ -47,12 +47,9 @@ jobs:
           subject: "GitHub Actions: Branch Sync Failed"
           body: |
             The following branches failed to sync:
-            - ${{ matrix.branch }}: ${{ steps.sync_branch.outcome }}
+            - ${{ matrix.branch }}: ${{ steps.sync_branch.result }}
             Error details:
             ```
-            ${{ steps.sync_branch.outputs.error }}
+            ${{ steps.sync_branch.outputs.error || 'No error details available' }}
             ```
           to: ${{ secrets.TO_EMAIL_USERNAME }}
-
-
-

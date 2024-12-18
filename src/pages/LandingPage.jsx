@@ -13,7 +13,7 @@ import sql_server_icon from "../assets/sql-server.png";
 // import github from "../assets/github.png";
 import screenshot from "../assets/screenshot.png";
 import FadeIn from "../animations/FadeIn";
-import axios from "axios";
+// import axios from "axios";
 // import { languages } from "../i18n/i18n";
 // import { Tweet } from "react-tweet";
 

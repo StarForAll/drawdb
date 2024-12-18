@@ -36,7 +36,7 @@ jobs:
           echo "Sync status for ${{ matrix.branch }}: ${{ steps.sync_branch.outcome }}"
 
       - name: Send email notification on sync failure
-        if: failure() || steps.sync_branch.result != 'success'
+        if: failure() || steps.sync_branch.outcome != 'success'
         uses: dawidd6/action-send-mail@v4
         with:
           server_address: smtp.qiye.aliyun.com
@@ -47,7 +47,7 @@ jobs:
           subject: "GitHub Actions: Branch Sync Failed"
           body: |
             The following branches failed to sync:
-            - ${{ matrix.branch }}: ${{ steps.sync_branch.result }}
+            - ${{ matrix.branch }}: ${{ steps.sync_branch.outcome }}
             Error details:
             ```
             ${{ steps.sync_branch.outputs.error || 'No error details available' }}
